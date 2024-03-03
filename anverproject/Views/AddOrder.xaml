@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="Trendyol.Views.AddOrder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trendyol.Views"
+             mc:Ignorable="d" 
+             xmlns:viewmodels="clr-namespace:Trendyol.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:AddOrderViewModel}"
+             d:DesignHeight="650" d:DesignWidth="1360" Background="#8f7457">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="293*"/>
+            <RowDefinition Height="158*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Добавление заказа"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,9,0,239" Width="188" Foreground="#DDBC95"/>
+
+        <Button
+            Command="{Binding Add}"
+            Content="Добавить заказ" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="586,0,0,178" Width="220" Height="40" Background="#B38867" BorderBrush="#CDCDC0" BorderThickness="2" Foreground="White" Grid.Row="1"/>
+        <ScrollViewer Margin="302,106,-150,10">
+            <ListBox Grid.Row="1" Background="#CDCDC0" BorderBrush="#DDBC95" BorderThickness="7"
+                     
+            ItemsSource="{Binding Product}"
+            SelectedItem="{Binding SelectedProduct}"
+            SelectionMode="Single" 
+            FontSize="17"
+            FontWeight="Bold"
+            Margin="0,0,390,0"
+            Height="288" Width="798" RenderTransformOrigin="0.577,0.518">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <StackPanel 
+                  Grid.Row="1">
+                                <Label Content="ID: "/>
+                                <Label Content="Имя: "/>
+                                <Label Content="Описание: "/>
+                                <Label Content="Количество: "/>
+
+                            </StackPanel>
+                            <StackPanel
+                         Grid.Row="1">
+                                <Label Content="{Binding Id}"/>
+                                <Label Content="{Binding Name}"/>
+                                <Label Content="{Binding Description}"/>
+                                <Label Content="{Binding Count}"/>
+                            </StackPanel>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+        <Button
+            Command="{Binding Exit}"
+            Content="Назад" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,5" Width="100" Height="40" Background="#B38867" BorderBrush="#CDCDC0" BorderThickness="2" Foreground="White" Grid.Row="1"/>
+    </Grid>
+</UserControl>

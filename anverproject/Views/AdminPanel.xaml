@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="Trendyol.Views.AdminPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trendyol.Views" xmlns:viewmodels="clr-namespace:Trendyol.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AdminPanelViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1360" Background="AliceBlue">
+    <Grid>
+        <TextBlock Text="Заказы пользователей" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="268,58,0,543" Width="228"/>
+        <TextBlock Text="Информация о складе" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="890,58,0,543" Width="228"/>
+        <ListBox
+                ItemsSource="{Binding Order}"
+                SelectedItem="{Binding SelectedOrder}"
+                SelectionMode="Single"
+                FontSize="17"
+                x:Name="UsersWithOrdersListBox"
+                Margin="123,112,718,112"
+                Background="White"
+                BorderBrush="Black"
+                BorderThickness="1" Height="426" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <StackPanel 
+                 Grid.Row="1">
+                            <Label Content="ID: "/>
+                            <Label Content="Имя: "/>
+                            <Label Content="Дата: "/>
+                            <Label Content="Статус: "/>
+                        </StackPanel>
+                        <StackPanel
+                 Grid.Row="1">
+                            <Label Content="{Binding ProductId}"/>
+                            <Label Content="{Binding Product}"/>
+                            <Label Content="{Binding Created}"/>
+                            <Label Content="{Binding Status}"/>
+
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox
+        ItemsSource="{Binding Product}"
+        SelectedItem="{Binding SelectedProduct}"
+        SelectionMode="Single"
+        FontSize="17"
+        x:Name="Product"
+        Margin="688,112,115,112"
+        Background="White"
+        BorderBrush="Black"
+        BorderThickness="1" Height="426" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <StackPanel 
+         Grid.Row="1">
+                            <Label Content="ID: "/>
+                            <Label Content="Имя: "/>
+                            <Label Content="Описания: "/>
+                            <Label Content="Количество: "/>
+                        </StackPanel>
+                        <StackPanel
+         Grid.Row="1">
+                            <Label Content="{Binding Id}"/>
+                            <Label Content="{Binding Name}"/>
+                            <Label Content="{Binding Description}"/>
+                            <Label Content="{Binding Count}"/>
+
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+        <Button
+            Command="{Binding Exit}"
+            Content="Выход" Margin="0,0,28,52" Background="DarkRed" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="40"/>
+        <Button
+            Command="{Binding Add}"
+    Content="Добавить товар на склад" Margin="0,0,370,54" Background="DarkGreen" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="199" Height="40"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="122,0,0,54">
+            <RadioButton
+                Command="{Binding Radio}"
+                IsChecked="{Binding RadioButton.OrderPlaced}"
+                Content="Заказ сделан" Width="97"/>
+            <RadioButton
+                Command="{Binding Radio}"
+                IsChecked="{Binding RadioButton.ArrivedAtTheWarehouse}"
+                Content="Поступил на склад" Margin="10"/>
+            <RadioButton
+                Command="{Binding Radio}"
+                IsChecked="{Binding RadioButton.Sent}"
+                Content="Отправлен" Margin="10"/>
+            <RadioButton
+                Command="{Binding Radio}"
+                IsChecked="{Binding RadioButton.SmartCustomsCheck}"
+                Content="На таможенной проверке " Margin="10"/>
+            <RadioButton
+                Command="{Binding Radio}"
+                IsChecked="{Binding RadioButton.InFilial}"
+                Content="На почте" Margin="10"/>
+        </StackPanel>
+        <Button
+            Command="{Binding DeleteOrder}"
+            Content="Удалить товар из склада" Margin="0,0,153,52" Background="DarkRed" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="199" Height="40"/>
+    </Grid>
+</UserControl>

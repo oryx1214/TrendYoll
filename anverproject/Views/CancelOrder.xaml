@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Trendyol.Views.CancelOrder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trendyol.Views"
+             mc:Ignorable="d" 
+             xmlns:viewmodels="clr-namespace:Trendyol.ViewModels"
+d:DataContext="{d:DesignInstance Type=viewmodels:GancelOrderViewModel}"
+             d:DesignHeight="650" d:DesignWidth="1360" Background="#8f7457">
+    <Grid>
+        <TextBlock Text="Удаление заказа" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,567" Width="172"  Foreground="#DDBC95"/>
+
+        <StackPanel Margin="30,64,20,20"/>
+        <ScrollViewer Margin="200,52,-198,104">
+            <ListBox Grid.Row="1"
+                     Background="#CDCDC0"
+                     BorderBrush="#DDBC95"
+                     BorderThickness="7"
+    ItemsSource="{Binding Order}"
+    SelectedItem="{Binding SelectedOrder}"
+    SelectionMode="Single"
+    FontSize="17"
+    FontWeight="Bold"
+                  Margin="0,0,390,0"
+    Height="362" Width="912">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <StackPanel 
+          Grid.Row="1">
+                                <Label Content="Имя: "/>
+                                <Label Content="Фамилия: "/>
+                                <Label Content="Электронная почта: "/>
+                                <Label Content="ID Продукта: "/>
+                                <Label Content="Имя продукта: "/>
+                                <Label Content="Дата заказа: "/>
+                                <Label Content="Статус: "/>
+
+                            </StackPanel>
+                            <StackPanel
+                 Grid.Row="1">
+                                <Label Content="{Binding Users.Name}"/>
+                                <Label Content="{Binding Users.Surname}"/>
+                                <Label Content="{Binding Users.Email}"/>
+                                <Label Content="{Binding ProductId}"/>
+                                <Label Content="{Binding Product}"/>
+                                <Label Content="{Binding Created}"/>
+                                <Label Content="{Binding Status}"/>
+                            </StackPanel>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+
+        <Button
+     Command="{Binding Exit}"
+     Content="Назад" Margin="1244,598,28,20" Background="#B38867" BorderBrush="#CDCDC0" BorderThickness="2" RenderTransformOrigin="0.501,0.581"/>
+        <Button
+            Command="{Binding Delete}"
+            Content="Удалить заказ" Margin="220,499,873,119" Background="#B38867" BorderBrush="#CDCDC0" BorderThickness="2"/>
+    </Grid>
+</UserControl>
